@@ -103,7 +103,7 @@ def evaluate_mage_roleplay():
 
     dataset = client.get_dataset(
         name="mage_character",
-        version_id="RGF0YXNldFZlcnNpb246NA==",
+        version_id="RGF0YXNldFZlcnNpb246MQ==",
     )
 
     @tracer.chain
