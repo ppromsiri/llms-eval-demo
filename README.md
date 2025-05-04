@@ -131,12 +131,6 @@ To run evaluations using LLM judges:
 python src/agentic/evaluations/run_evaluation_llm.py
 ```
 
-For non-LLM-based evaluations:
-
-```bash
-python src/agentic/evaluations/run_evaluation_non_llm.py
-```
-
 ## Project Components
 
 ### Character Agents
