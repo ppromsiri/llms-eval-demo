@@ -1,0 +1,36 @@
+# Setup Environment
+# -----------------
+# Configure Poetry to create virtualenv in project directory
+poetry config virtualenvs.in-project true
+
+# Create virtual environment and install dependencies
+poetry install
+
+# Activate the virtual environment
+source $(poetry env info --path)/bin/activate
+
+# Set Python path
+export PYTHONPATH=~/Project/llms-eval-demo/src
+
+# Running Components
+# -----------------
+# Start Phoenix server for tracking experiments
+phoenix start
+
+# Run the agent demo (test character responses)
+python src/agentic/agents/run_agent.py
+
+# Upload evaluation datasets to Phoenix
+python src/agentic/evaluators/add_dataset.py
+
+# Run LLM-based evaluations
+python src/agentic/evaluations/run_evaluation_llm.py
+
+# Run non-LLM evaluations
+python src/agentic/evaluations/run_evaluation_non_llm.py
+
+# Accessing Phoenix UI
+# -------------------
+# Open in browser: http://localhost:6006
+
+

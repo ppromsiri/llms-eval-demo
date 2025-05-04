@@ -1,0 +1,28 @@
+[project]
+name = "llms-eval-demo"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Boyd BigDataRPG",email = "sorratat.s@gmail.com"}
+]
+readme = "README.md"
+
+
+[tool.poetry.dependencies]
+python = ">=3.12.2,<3.14"
+langgraph = "^0.4.1"
+langchain = "^0.3.25"
+langchain-google-genai = "^2.1.4"
+arize-phoenix = "^8.22.1"
+openpyxl = "^3.1.5"
+pandas = "^2.2.3"
+jsonschema = "^4.23.0"
+python-dotenv = "^1.1.0"
+
+[tool.poetry]
+packages = [{include = "llms_eval_demo", from = "src"}]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
