@@ -72,15 +72,84 @@ To verify that Poetry is installed correctly:
 poetry --version
 ```
 
-## Setup
+## Detailed Setup Instructions
 
-1. Clone the repository
-2. Create a .env file based on .env.example with your Gemini API key
-3. Install dependencies with Poetry
+### 1. Clone the Repository
+
+First, clone this repository to your local machine:
+
+```bash
+# Using HTTPS
+git clone https://github.com/BigDataRPG/llms-eval-demo.git
+
+# Navigate to the project directory
+cd llms-eval-demo
+```
+
+### 2. Set Up Environment Variables
+
+Create a `.env` file in the root of the project by copying the example:
+
+```bash
+# Copy the example env file
+cp .env.example .env
+
+# Open the file and add your Gemini API key
+# On macOS/Linux
+nano .env
+# OR on Windows
+notepad .env
+```
+
+Add your Gemini API key to the `.env` file:
+```
+gemini_api_key="YOUR_API_KEY_HERE"
+```
+
+You can get a Gemini API key from the Google AI Studio at https://aistudio.google.com/
+
+### 3. Set Up Python Environment with Poetry
+
+Configure Poetry to create virtualenvs in the project directory:
 
 ```bash
 poetry config virtualenvs.in-project true
+```
+
+Install project dependencies:
+
+```bash
 poetry install
+```
+
+This might take a few minutes as Poetry resolves and installs all required packages.
+
+### 4. Activate the Virtual Environment
+
+```bash
+# On macOS/Linux
+source $(poetry env info --path)/bin/activate
+
+# On Windows (PowerShell)
+& $(poetry env info --path)\Scripts\Activate.ps1
+
+# On Windows (CMD)
+call $(poetry env info --path)\Scripts\activate.bat
+```
+
+### 5. Set Python Path
+
+This ensures Python can find the modules in the project:
+
+```bash
+# On macOS/Linux
+export PYTHONPATH=$PYTHONPATH:$(pwd)/src
+
+# On Windows (PowerShell)
+$env:PYTHONPATH += ";$(pwd)\src"
+
+# On Windows (CMD)
+set PYTHONPATH=%PYTHONPATH%;%cd%\src
 ```
 
 ## Running the Demo
@@ -98,20 +167,6 @@ This will start the Phoenix server on http://localhost:6006
 To test the character agents and see their responses:
 
 ```bash
-source $(poetry env info --path)/bin/activate  # On macOS/Linux
-# OR
-# On Windows (PowerShell)
-# & $(poetry env info --path)\Scripts\Activate.ps1
-# On Windows (CMD)
-# call $(poetry env info --path)\Scripts\activate.bat
-
-export PYTHONPATH=~/Project/llms-eval-demo/src  # On macOS/Linux
-# OR 
-# On Windows (PowerShell)
-# $env:PYTHONPATH="$HOME\Project\llms-eval-demo\src"
-# On Windows (CMD)
-# set PYTHONPATH=%USERPROFILE%\Project\llms-eval-demo\src
-
 python src/agentic/agents/run_agent.py
 ```
 
@@ -155,6 +210,9 @@ All evaluations are tracked in Phoenix for easy visualization and comparison bet
 - **Poetry not found**: Make sure Poetry is properly installed and added to your PATH
 - **Python version mismatch**: Ensure you have Python 3.12+ installed
 - **Phoenix server connection issues**: Verify the Phoenix server is running at http://localhost:6006
+- **Module not found errors**: Check that your PYTHONPATH is set correctly
+- **API key issues**: Verify your Gemini API key is correctly set in the .env file
+- **Dependency errors**: Try `poetry update` to update dependencies to compatible versions
 
 ## License
 
