@@ -28,6 +28,50 @@ src/
 - Poetry for dependency management
 - Phoenix server running locally for experiment tracking
 
+## Installing Poetry
+
+If you don't have Poetry installed, follow these instructions based on your operating system:
+
+### macOS / Linux
+
+Install with the official installer:
+
+```bash
+curl -sSL https://install.python-poetry.org | python3 -
+```
+
+After installation, you may need to add Poetry to your PATH. Add this line to your shell configuration file (.bashrc, .zshrc, etc.):
+
+```bash
+export PATH="$HOME/.local/bin:$PATH"
+```
+
+### Windows
+
+#### Using PowerShell
+
+```powershell
+(Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py -
+```
+
+After installation, Poetry should be automatically added to your PATH. If not, you may need to add `%APPDATA%\Python\Scripts` to your system PATH.
+
+#### Using Chocolatey
+
+If you have Chocolatey package manager:
+
+```
+choco install poetry
+```
+
+### Verifying Installation
+
+To verify that Poetry is installed correctly:
+
+```bash
+poetry --version
+```
+
 ## Setup
 
 1. Clone the repository
@@ -54,8 +98,20 @@ This will start the Phoenix server on http://localhost:6006
 To test the character agents and see their responses:
 
 ```bash
-source $(poetry env info --path)/bin/activate
-export PYTHONPATH=~/Project/llms-eval-demo/src
+source $(poetry env info --path)/bin/activate  # On macOS/Linux
+# OR
+# On Windows (PowerShell)
+# & $(poetry env info --path)\Scripts\Activate.ps1
+# On Windows (CMD)
+# call $(poetry env info --path)\Scripts\activate.bat
+
+export PYTHONPATH=~/Project/llms-eval-demo/src  # On macOS/Linux
+# OR 
+# On Windows (PowerShell)
+# $env:PYTHONPATH="$HOME\Project\llms-eval-demo\src"
+# On Windows (CMD)
+# set PYTHONPATH=%USERPROFILE%\Project\llms-eval-demo\src
+
 python src/agentic/agents/run_agent.py
 ```
 
@@ -97,6 +153,14 @@ The project demonstrates two evaluation approaches:
 ### Phoenix Integration
 
 All evaluations are tracked in Phoenix for easy visualization and comparison between models and prompts.
+
+## Troubleshooting
+
+### Common Issues
+
+- **Poetry not found**: Make sure Poetry is properly installed and added to your PATH
+- **Python version mismatch**: Ensure you have Python 3.12+ installed
+- **Phoenix server connection issues**: Verify the Phoenix server is running at http://localhost:6006
 
 ## License
 
